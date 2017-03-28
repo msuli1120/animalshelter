@@ -50,9 +50,16 @@
     return $app['twig']->render('index.html.twig', array('results'=>$results));
 });
 
-  $app->post("/home", function () use ($app) {
-    return $app['twig']->render('index.html.twig');
-  });
-  
+$app->get("/cats/{id}", function($id) use ($app) {
+  $results = Animal::find($id);
+  return $app['twig']->render('index.html.twig', array('results'=>$results));
+});
+
+$app->get("/bunnys/{id}", function($id) use ($app) {
+  $results = Animal::find($id);
+  return $app['twig']->render('index.html.twig', array('results'=>$results));
+});
+
+
   return $app;
 ?>
