@@ -82,5 +82,17 @@
       return $results;
     }
 
+    function update($new_name, $new_gender, $new_breed){
+      $executed = $GLOBALS['db']->exec("UPDATE animals SET name = '{$new_name}', gender='{$new_gender}', breed='{$new_breed}' WHERE id = {$this->getId()};");
+      if($executed){
+        $this->setName($new_name);
+        $this->setGender($new_gender);
+        $this->setBreed($new_breed);
+        return true;
+      } else {
+        return false;
+      }
+    }
+
   }
 ?>

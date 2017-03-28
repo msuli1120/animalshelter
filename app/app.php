@@ -15,6 +15,9 @@
     'twig.path' => __DIR__.'/../views'
   ));
 
+  use Symfony\Component\HttpFoundation\Request;
+  Request::enableHttpMethodParameterOverride();
+
   $app->get("/", function () use ($app) {
     return $app['twig']->render('index.html.twig');
   });
@@ -60,6 +63,20 @@ $app->get("/bunnys/{id}", function($id) use ($app) {
   return $app['twig']->render('index.html.twig', array('results'=>$results));
 });
 
+$app->get("/animals/{id}/edit", function ($id) use ($app) {
+  $results = Animal::find($id);
+  return $app['twig']->render('edit.html.twig', array('results'=>$results));
+});
+
+$app->patch("/animals/{id}", function ($id) use ($app) {
+   $name = $_POST['name'];
+   $gender = $_POST['gender'];
+   $breed = $_POST['breed'];
+   $animal = Animal::find($id);
+
+   $new_animal->update($name,$gender,$breed);
+   return $app['twig']->render('category.html.twig');
+});
 
   return $app;
 ?>

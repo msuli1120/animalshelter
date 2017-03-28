@@ -46,6 +46,7 @@
         <li>Gender: {{ result.gender }}</li>
         <li>Breed: {{ result.breed }}</li>
         <li>Date Enroll: {{ result.date_enroll }}</li>
+        <button><a href="/animals/{{ result.id }}/edit">Edit</a></button>
       {% endfor %}
     {% endif %}
 
