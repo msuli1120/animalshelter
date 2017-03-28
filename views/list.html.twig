@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Animal Shelter</title>
+  </head>
+  <body>
+    {% if results is not empty%}
+      {% for result in results %}
+        {% if result.type_id == 1 %}
+          <li>{{ result.name }}: dog</li>
+          <li>Date of Admittance: {{ result.date_enroll }}</li>
+          {% elseif result.type_id == 2 %}
+            <li>{{ result.name }}: cat</li>
+            <li>Date of Admittance: {{ result.date_enroll }}</li>
+            {% elseif result.type_id == 3 %}
+              <li>{{ result.name }}: bunny</li>
+              <li>Date of Admittance: {{ result.date_enroll }}</li>
+        {% endif %}
+      {% endfor %}
+
+    {% else %}
+      <h3>We don't have animals in the shelter right now.</h3>
+    {% endif %}
+
+    <form action="/home" method="post">
+      <button type="submit">Home</button>
+    </form>
+  </body>
+</html>
